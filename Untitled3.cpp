@@ -1,35 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-long long int fiboI(int n){
-    long long int a = 0, b = 1, c;
-    int i = 2;
-    if(n == 1)
-        return a;
-    else{
-        if(n == 2)
-            return b;
-        else{
-            while(i < n){
-                c = a + b;
-                a = b;
-                b = c;
-                i++;
-            }
-            return c;
-        }
+#include <iostream>
+
+double fibonacci(int num) {
+    if (num <= 0) return 0;
+    if (num == 1 || num == 2) return 1;
+
+    long long int a = 1, b = 1, c;
+    for (int i = 3; i <= num; ++i) {
+        c = a + b;
+        a = b;
+        b = c;
     }
+    return b;
 }
 
-int main () {
+int main() {
+    int n;
+    int *ptr;
+	ptr = &n;
+	
+    std::cout << "Digite um número: ";
+    std::cin >> *ptr;
 
-    int n = 50;
-    time_t tIni, tFim;
-
-    tIni = time(NULL);
-    printf("Fibonacci iterativo: %lld\n", fiboI(n));
-    tFim = time(NULL);
-    printf("\tTempo em segundos: %f\n\n", difftime(tFim, tIni)); // diferença entre a hora de início e a hora de fim
+    std::cout << fibonacci(*ptr) << std::endl;
 
     return 0;
 }
